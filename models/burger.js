@@ -11,11 +11,12 @@ var burger = {
 			cb(res);
 		});
 	},
-	updateOne: function(rowId, cb) {
-		orm.updateOne('burgers', 'devoured', true, rowId, function(res) {
+	updateOne: function(updateVal, rowId, cb) {
+		orm.updateOne('burgers', 'devoured', updateVal, rowId, function(res) {
 			cb(res);
 		});
 	}
 };
 
+//export burger to be used elsewhere
 module.exports = burger;
