@@ -1,33 +1,58 @@
-<h1>Eat - Da - Burger!</h1>
+<header>
+	<h1>Eat - Da - Burger!</h1>
+</header>
 
-<div id="readyToEat">
-	{{#each burgers}}
-		{{#unless this.devoured}}
-			<div id="burger{{this.id}}">
-				<p>{{this.id}}. {{this.burger_name}}</p>
-				<form action="/{{this.id}}?_method=PUT" method="POST">
-			      	<input type="hidden" name="devoured" value="1">
-			      	<button type="submit">Devour It!</button>
-				</form>
+
+
+<div class="container">
+	{{!-- burgers available to be devoured --}}
+	<div class="row">
+		<div class="col-md-6">
+			<div class="burger-imgs">
+				<img src="assets/img/burger.png">
 			</div>
-		{{/unless}}
-	{{/each}}
-</div>
-
-<div id="devoured">
-	{{#each burgers}}
-		{{#if devoured}}
-			<div id="devoured-burger{{this.id}}">
-				<p>{{this.id}}. {{this.burger_name}}</p>
+			<div id="readyToEat">
+				{{#each burgers}}
+					{{#unless this.devoured}}
+						<div id="burger">
+							<div class="alert alert-success" role="alert">
+								<p>{{this.id}}. {{this.burger_name}}</p>
+								<form action="/{{this.id}}?_method=PUT" method="POST">
+							      	<input type="hidden" name="devoured" value="1">
+							      	<button type="submit" class="btn btn-danger">Devour It!</button>
+								</form>
+							</div>
+						</div>
+					{{/unless}}
+				{{/each}}
 			</div>
-		{{/if}}
-	{{/each}}
-</div>
+		</div>
 
-<div id="input">
-	<form action="/" method="POST">	
-		<textarea name="name" id="burger-input" cols="50" rows="4"></textarea>
-		<br>
-		<button type="submit">Add a Burger!</button>
-	</form>
+		{{!-- display all burger w/ devoured = true --}}
+		<div class="col-md-6">
+			<div class="burger-imgs">
+				<img src="assets/img/d-burger.png">
+			</div>
+			<div id="devoured">
+				{{#each burgers}}
+					{{#if devoured}}
+						<div class="alert alert-danger" role="alert">
+							<div id="devoured-burger">
+								<p>{{this.id}}. {{this.burger_name}}  <strong>*Devoured!*</strong></p>
+							</div>
+						</div>
+					{{/if}}
+				{{/each}}
+			</div>
+		</div>
+	</div>
+
+	{{!-- input form to add new burgers to the DB --}}
+	<div id="input">
+		<form action="/" method="POST">	
+			<textarea name="name" id="burger-input" cols="50" rows="4"></textarea>
+			<br>
+			<button type="submit" class="btn btn-success">Add a Burger!</button>
+		</form>
+	</div>
 </div>
