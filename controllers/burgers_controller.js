@@ -8,7 +8,6 @@ router.get('/', function(req, res) {
 		var hbsObj = {
 			burgers: data
 		};
-		console.log(hbsObj);
 		res.render('index', hbsObj);
 	});
 });
@@ -20,6 +19,7 @@ router.post('/', function(req, res) {
 	});
 });
 
+//route used to update the devoured column
 router.put('/:id', function(req, res){
 	var id = req.params.id;
 	burger.updateOne(req.body.devoured, id, function() {
